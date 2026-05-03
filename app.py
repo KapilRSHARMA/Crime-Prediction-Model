@@ -77,16 +77,9 @@ USERS = {
     'public':  {'password':'user123',   'role':'public', 'name':'Citizen User'},
 }
 MODEL_INFO = {
-    'rf':  {'name':'Random Forest',    'acc':97.59, 'f1':0.9587, 'auc':0.9991,
-            'type':'ML', 'desc':'200 decision trees · class_weight=balanced · max_depth=18'},
-    'dt':  {'name':'Decision Tree',    'acc':99.74, 'f1':0.9955, 'auc':0.9983,
-            'type':'ML', 'desc':'max_depth=20 · Highest accuracy · min_samples_split=4'},
-    'gb':  {'name':'Gradient Boosting','acc':94.77, 'f1':0.9054, 'auc':0.9885,
-            'type':'ML', 'desc':'100 estimators · learning_rate=0.15 · subsample=0.8'},
-    'dnn': {'name':'Deep Neural Net',  'acc':83.24, 'f1':0.6764, 'auc':0.8980,
-            'type':'DL', 'desc':'Dense(128)→Dense(64)→Dense(32)→Sigmoid · Adam · Early stopping'},
-    'cnn': {'name':'CNN Network',      'acc':81.00, 'f1':0.6410, 'auc':0.8669,
-            'type':'DL', 'desc':'Poly(deg=2) feature maps → Dense(128)→Dense(64)→Dense(32)'},
+    'rf':  {'name':'Random Forest',    'acc':97.59, 'f1':0.9587, 'auc':0.9991, 'type':'ML'},
+    'dt':  {'name':'Decision Tree',    'acc':99.74, 'f1':0.9955, 'auc':0.9983, 'type':'ML'},
+    'gb':  {'name':'Gradient Boosting','acc':94.77, 'f1':0.9054, 'auc':0.9885, 'type':'ML'}
 }
 fir_store = []
 _df = _models = _scaler = _enc = _results = None
@@ -101,7 +94,7 @@ def load_all():
         print(f" Dataset loaded: {len(_df):,} records")
 
     _models = {}
-    for key in ['rf', 'dt', 'gb', 'dnn', 'cnn']:
+    for key in ['rf', 'dt', 'gb']:
         fp = os.path.join(ART, f'{key}.pkl')
         if os.path.exists(fp):
             with open(fp, 'rb') as f:
@@ -494,27 +487,5 @@ def alerts():
         })
     out.sort(key=lambda x: x['mins_ago'])
     return jsonify({'alerts': out})
-if __name__ == '__main__':
-    records = len(_df) if _df is not None else 0
-    print("\n" + "="*62)
-    print("  CrimeShield — Crime Prediction API")
-    print("="*62)
-    print(f"  Artifacts folder : {ART}")
-    print(f"  Models loaded    : {len(_models)} / 5")
-    print(f"  Dataset records  : {records:,}")
-    print("-"*62)
-    print("  Model              Accuracy  Type")
-    print("  Decision Tree       99.74%   [ML]  ")
-    print("  Random Forest       97.59%   [ML]  ")
-    print("  Gradient Boosting   94.77%   [ML]  ")
-    print("  Deep Neural Net     83.24%   [DL]  ")
-    print("  CNN Network         81.00%   [DL]  ")
-    print("-"*62)
-    print("  API URL    : http://localhost:5000")
-    print("  Health     : http://localhost:5000/api/health")
-    print("="*62)
-    print("    Open frontend in the browser")
-    print("    Keep THIS CMD window open while using the app")
-    print("="*62 + "\n")
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
