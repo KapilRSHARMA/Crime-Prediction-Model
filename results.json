@@ -1,0 +1,257 @@
+{
+  "models": {
+    "Decision Tree": {
+      "accuracy": 0.9891,
+      "precision": 0.9753,
+      "recall": 0.9862,
+      "f1": 0.9807,
+      "roc_auc": 0.9911,
+      "cm": [
+        [
+          11403,
+          112
+        ],
+        [
+          62,
+          4423
+        ]
+      ],
+      "train_time_sec": 0.52
+    },
+    "Random Forest": {
+      "accuracy": 0.9676,
+      "precision": 0.9157,
+      "recall": 0.9741,
+      "f1": 0.944,
+      "roc_auc": 0.9961,
+      "cm": [
+        [
+          11113,
+          402
+        ],
+        [
+          116,
+          4369
+        ]
+      ],
+      "train_time_sec": 2.59,
+      "feature_importance": [
+        {
+          "feature": "LAT",
+          "importance": 0.12779
+        },
+        {
+          "feature": "LONG",
+          "importance": 0.1542
+        },
+        {
+          "feature": "LAT_NORM",
+          "importance": 0.12689
+        },
+        {
+          "feature": "LONG_NORM",
+          "importance": 0.16598
+        },
+        {
+          "feature": "OFFENSE_CODE",
+          "importance": 0.01301
+        },
+        {
+          "feature": "HOUR",
+          "importance": 0.07935
+        },
+        {
+          "feature": "MONTH",
+          "importance": 0.00658
+        },
+        {
+          "feature": "YEAR",
+          "importance": 0.00438
+        },
+        {
+          "feature": "DISTRICT_ENC",
+          "importance": 0.04593
+        },
+        {
+          "feature": "DAY_ENC",
+          "importance": 0.00468
+        },
+        {
+          "feature": "OFFENSE_ENC",
+          "importance": 0.01084
+        },
+        {
+          "feature": "UCR_ENC",
+          "importance": 0.00285
+        },
+        {
+          "feature": "SHOOTING",
+          "importance": 9e-05
+        },
+        {
+          "feature": "RA_LOG",
+          "importance": 0.1249
+        },
+        {
+          "feature": "IS_NIGHT",
+          "importance": 0.01245
+        },
+        {
+          "feature": "IS_WEEKEND",
+          "importance": 0.00126
+        },
+        {
+          "feature": "IS_EVENING",
+          "importance": 0.00575
+        },
+        {
+          "feature": "IS_RUSH",
+          "importance": 0.00261
+        },
+        {
+          "feature": "HOUR_SIN",
+          "importance": 0.05379
+        },
+        {
+          "feature": "HOUR_COS",
+          "importance": 0.03786
+        },
+        {
+          "feature": "MONTH_SIN",
+          "importance": 0.00527
+        },
+        {
+          "feature": "MONTH_COS",
+          "importance": 0.00525
+        },
+        {
+          "feature": "DAY_SIN",
+          "importance": 0.00486
+        },
+        {
+          "feature": "DAY_COS",
+          "importance": 0.00344
+        }
+      ]
+    },
+    "Gradient Boosting": {
+      "accuracy": 0.9524,
+      "precision": 0.9237,
+      "recall": 0.9048,
+      "f1": 0.9142,
+      "roc_auc": 0.9909,
+      "cm": [
+        [
+          11180,
+          335
+        ],
+        [
+          427,
+          4058
+        ]
+      ],
+      "train_time_sec": 17.29
+    },
+    "Deep Neural Net": {
+      "accuracy": 0.796,
+      "precision": 0.6899,
+      "recall": 0.4945,
+      "f1": 0.5761,
+      "roc_auc": 0.8307,
+      "cm": [
+        [
+          10518,
+          997
+        ],
+        [
+          2267,
+          2218
+        ]
+      ],
+      "train_time_sec": 10.02,
+      "architecture": "Input(24) \u2192 Dense(128,ReLU) \u2192 Dense(64,ReLU) \u2192 Dense(32,ReLU) \u2192 Sigmoid",
+      "optimizer": "Adam  lr=0.001  batch=1024  early_stopping=True"
+    },
+    "CNN Network": {
+      "accuracy": 0.8003,
+      "precision": 0.7064,
+      "recall": 0.4919,
+      "f1": 0.5799,
+      "roc_auc": 0.8515,
+      "cm": [
+        [
+          10598,
+          917
+        ],
+        [
+          2279,
+          2206
+        ]
+      ],
+      "train_time_sec": 10.72,
+      "architecture": "Poly(deg=2)\u219245 feats \u2192 Dense(128) \u2192 Dense(64) \u2192 Dense(32) \u2192 Sigmoid",
+      "cnn_input_size": 45
+    }
+  },
+  "cross_validation": {
+    "scores": [
+      0.8868333333333334,
+      0.9021666666666667,
+      0.8996666666666666,
+      0.9036666666666666,
+      0.9018333333333334
+    ],
+    "mean": 0.8988333333333334,
+    "std": 0.006134601318205865
+  },
+  "dataset_info": {
+    "source": "Boston Crime Incident Reports",
+    "raw_records": 319073,
+    "clean_records": 297571,
+    "features": [
+      "LAT",
+      "LONG",
+      "LAT_NORM",
+      "LONG_NORM",
+      "OFFENSE_CODE",
+      "HOUR",
+      "MONTH",
+      "YEAR",
+      "DISTRICT_ENC",
+      "DAY_ENC",
+      "OFFENSE_ENC",
+      "UCR_ENC",
+      "SHOOTING",
+      "RA_LOG",
+      "IS_NIGHT",
+      "IS_WEEKEND",
+      "IS_EVENING",
+      "IS_RUSH",
+      "HOUR_SIN",
+      "HOUR_COS",
+      "MONTH_SIN",
+      "MONTH_COS",
+      "DAY_SIN",
+      "DAY_COS"
+    ],
+    "hotspot_ratio": 0.281,
+    "years": "2015\u20132018",
+    "districts": [
+      "A1",
+      "A15",
+      "A7",
+      "B2",
+      "B3",
+      "C11",
+      "C6",
+      "D14",
+      "D4",
+      "E13",
+      "E18",
+      "E5"
+    ],
+    "shooting_cases": 983
+  },
+  "filter_note": "Only models with accuracy >= 80% are included",
+  "trained_at": "2026-05-03T11:15:18.616265"
+}
